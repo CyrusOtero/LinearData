@@ -2,6 +2,10 @@
 # 1/23/2021
 # time to do some snake stuff
 
+# 1/27/2021
+# I totally forgot to cite the video that helped me do **most** of this
+# https://www.youtube.com/watch?v=JlMyYuY1aXU
+
 # Node class serves as template for all nodes, node will hold data and 'pointer' to next node
 class node:
     def __init__(self,data=None):
