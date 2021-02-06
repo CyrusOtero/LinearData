@@ -2,9 +2,9 @@
 # 1/23/2021
 # time to do some snake stuff
 
-# 1/27/2021
-# I totally forgot to cite the video that helped me do **most** of this
-# https://www.youtube.com/watch?v=JlMyYuY1aXU
+# I spent a long time trying to figure out how to append a node to the left of the list
+# I never got it completely working, I put in some of my scrap code at the bottom so you can laugh at me
+# Not even gonna look at where I left it :)
 
 # Node class serves as template for all nodes, node will hold data and 'pointer' to next node
 class node:
@@ -34,10 +34,10 @@ class linked_up:
 
     def display(self):
         elems = []
-        current_node = self.head
-        while current_node.next!=None:
-            current_node=current_node.next
-            elems.append(current_node.data)
+        current = self.head
+        while current.next!=None:
+            current = current.next
+            elems.append(current.data)
         print(elems)
 
 # gets data associated with specified index, kinda like dictionary, pretty koool
@@ -46,10 +46,10 @@ class linked_up:
             print('ERROR: Index out of range!')
             return None
         current_index = 0
-        current_node=self.head
+        current=self.head
         while True:
-            current_node = current_node.next
-            if current_index==index: return current_node.data
+            current = current.next
+            if current_index==index: return current.data
             current_index+=1
 # 'erases' node by changing the last node's pointer to the following node, uses specified index, preeeeetttttyyyy cooooooool
     def erase(self, index):
@@ -57,33 +57,43 @@ class linked_up:
             print('ERROR: Index out of range!')
             return
         current_index = 0
-        current_node=self.head
+        current=self.head
         while True:
-            last_node = current_node
-            current_node = current_node.next
+            last_node = current
+            current = current.next
             if current_index==index:
-                last_node.next = current_node.next
+                last_node.next = current.next
                 return
             current_index+=1 
 # iterates along the linked list looking to match the inputted data with data associated with a node. if found: returns True, the data, and the index. else: returns False
     def contains(self, data):
-        current_node = self.head
+        current = self.head
         current_index = 0
         try:
             while True:
-                current_node = current_node.next
-                if current_node.data==data: return True, current_node.data, current_index
+                current = current.next
+                if current.data==data: return True, current.data, current_index
                 current_index+=1
         except:
             return False
 
 # 'removes' the 1st node using the same method as the erase function
     def pop(self):
-        current_node = self.head
-        last_node = current_node
-        current_node = current_node.next
-        last_node.next = current_node.next        
+        current = self.head
+        last_node = current
+        current = current.next
+        last_node.next = current.next
+        return current.data        
 
+    def pop_right(self):
+        current = self.head
+        while True:
+            last_node = current
+            current = current.next
+            if current.next == None:
+                last_node.next = current.next
+                return current.data
+                
 list = linked_up()
 
 print('beep boop.. makin\' the list')
@@ -91,7 +101,9 @@ list.append(1)
 list.append(2)
 list.append(3)
 list.append(4)
-list.append(5)
+
+# list.append_left(7)
+# list.clearList()
 
 print('displaying list')
 list.display()
@@ -119,3 +131,48 @@ print('I don\'t like that first node')
 list.pop()
 print('gone')
 list.display()
+
+
+# this is taking forever
+    # def clearList(self):
+    #     current = self.head          
+
+    #     while current.next != None:
+    #         last_node = current
+    #         current = current.next
+    #         print(current.data)
+    #         last_node.next = current.next              
+    
+    # def append_left(self, data):
+    #     data = []
+        # while True:
+        #     last_node = current
+        #     current = current.next
+        #     if current.next == None:
+        #         last_node.next = current.next
+        #         return current.data       
+        # while current.next != None:
+        #     last_node = current
+        #     current = current.next
+        #     print(current.data)
+        #     data.append(current.data)
+        #     last_node.next = current.next
+            
+    
+            # if current.next == None:
+            #     last_node.next = current.next
+            #     return  
+                
+        # for data in data:
+            
+        # print(current.data)
+        # while current.next!=None:
+        #     Lol_no_way = current.next.data
+        #     print(current.next.data)
+        # current = current.next
+        #     current.data = Lol_no_way
+
+        # while current.next!=None:
+        #     print('hhh')
+        #     current.data = current.next.data
+        #     current = current.next
