@@ -76,7 +76,32 @@ class DoubleLinks:
                 current = current.next
         except:
             print(f'The list does not contain {data}')
+    
+# Im sure this could be reduced somehow
+# but Ive been really enjoying writing stuff without looking at help from the WEB
+# so yeah it might be kinda garbage
+# but it works, and it came from my dome
 
+# I start by making sure the linked list is at the far right end
+# then I loop using .prev taking all of the values in reverse order
+# finally, I iterate through backwards list (values) while assigning new linked list data
+    def reversal(self):
+        current = self.head
+        values = []
+        if self.head is None:
+            print('nothin in the list bruv')
+        else:
+            while current.next!=None:
+                current = current.next 
+            while current.prev != None:
+                values.append(current.data)
+                current = current.prev
+            values.append(current.data)
+            
+            for val in values:
+                current.data = val
+                current = current.next
+                    
 twolinks = DoubleLinks()
 
 twolinks.append(1)
@@ -86,10 +111,17 @@ twolinks.append(4)
 twolinks.append_left(6)
 
 twolinks.display()
-
+twolinks.reversal()
+twolinks.display()
 twolinks.pop()
 twolinks.pop_right()
 
 twolinks.display()
 
 twolinks.contains(2)
+
+twolinks.append(9)
+twolinks.append(46)
+twolinks.display()
+twolinks.reversal()
+twolinks.display()
